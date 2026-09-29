@@ -1,0 +1,131 @@
+/* Import Design Tokens & Animations */
+@import "styles/variables";
+@import "styles/theme";
+@import "styles/animations";
+
+/* Import Bootstrap and Bootstrap Icons */
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+/* Global utilities */
+body {
+  font-family: $font-family-body;
+  background-color: $bg-secondary;
+  color: $color-gray-900;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+  font-family: $font-family-display;
+  color: $color-brand-navy;
+}
+
+code, pre {
+  font-family: $font-family-mono;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Custom Color Utilities */
+.text-brand-navy {
+  color: $color-brand-navy !important;
+}
+
+.text-accent {
+  color: $color-accent-primary !important;
+}
+
+.bg-secondary {
+  background-color: $bg-secondary !important;
+}
+
+.bg-mint-sage {
+  background-color: $bg-mint-sage !important;
+}
+
+.bg-tertiary {
+  background-color: $bg-tertiary !important;
+}
+
+.bg-brand-navy {
+  background-color: $color-brand-navy !important;
+}
+
+.shadow-glow {
+  box-shadow: $shadow-glow !important;
+}
+
+/* Form & Utility Styling */
+.form-control, .form-select {
+  @extend .eh-input-field; // Apply input glow rings globally
+  
+  &.is-invalid {
+    border-color: $color-danger;
+    &:focus {
+      border-color: $color-danger;
+      box-shadow: 0 0 0 4px rgba($color-danger, 0.15);
+    }
+  }
+}
+
+/* Custom Button Variants (applying theme colors) */
+.btn {
+  transition: all $transition-fast;
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.btn-primary {
+  background-color: $color-brand-navy;
+  border-color: $color-brand-navy;
+  color: white;
+  &:hover, &:focus, &:active {
+    background-color: $color-brand-navy-light;
+    border-color: $color-brand-navy-light;
+    color: white;
+  }
+}
+
+.btn-outline-primary {
+  color: $color-brand-navy;
+  border-color: $color-brand-navy;
+  &:hover, &:focus, &:active {
+    background-color: $color-brand-navy;
+    color: #fff;
+  }
+}
+
+.btn-accent {
+  background-color: $color-accent-primary;
+  border-color: $color-accent-primary;
+  color: white;
+  &:hover, &:focus, &:active {
+    background-color: $color-accent-primary-hover;
+    border-color: $color-accent-primary-hover;
+    color: white;
+  }
+}
+
+.btn-ghost {
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: $color-brand-navy;
+  &:hover {
+    background-color: rgba($color-brand-navy, 0.05);
+  }
+}
+
+/* Apply card animations to property cards globally if not explicitly classed */
+app-property-card .card {
+  @extend .eh-property-card;
+  border: none;
+  border-radius: $radius-lg;
+}
+
+app-skeleton-loader .skeleton {
+  @extend .eh-skeleton;
+}

@@ -1,0 +1,16 @@
+<ng-container *ngIf="type === 'card'">
+  <div class="card border-0 shadow-sm mb-4 skeleton-card" *ngFor="let _ of countArray">
+    <div class="skeleton-img"></div>
+    <div class="card-body">
+      <div class="skeleton-text w-75 mb-3"></div>
+      <div class="skeleton-text w-50 mb-4"></div>
+      <div class="skeleton-text w-100 mb-2"></div>
+      <div class="skeleton-text w-100 mb-2"></div>
+      <div class="skeleton-text w-25 mt-4"></div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="type === 'text'">
+  <div class="skeleton-text mb-2" *ngFor="let _ of countArray" style="height: 1rem; width: 100%;"></div>
+</ng-container>

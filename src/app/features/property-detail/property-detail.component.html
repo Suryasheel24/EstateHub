@@ -1,0 +1,202 @@
+<div class="bg-light min-vh-100 py-4">
+  <div class="container">
+    
+    <!-- Loading State -->
+    <ng-container *ngIf="isLoading">
+      <div class="mb-4">
+        <app-skeleton-loader type="text" [count]="1"></app-skeleton-loader>
+      </div>
+      <app-skeleton-loader type="card" [count]="1"></app-skeleton-loader>
+      <div class="row mt-4">
+        <div class="col-lg-8"><app-skeleton-loader type="text" [count]="4"></app-skeleton-loader></div>
+        <div class="col-lg-4"><app-skeleton-loader type="card" [count]="1"></app-skeleton-loader></div>
+      </div>
+    </ng-container>
+
+    <!-- Error / Not Found State -->
+    <ng-container *ngIf="hasError">
+      <app-empty-state 
+        title="Property Not Found" 
+        message="The property you are looking for is not available or has been removed."
+        icon="bi-building-exclamation"
+        actionText="Back to Search"
+        (action)="goBack()">
+      </app-empty-state>
+    </ng-container>
+
+    <!-- Loaded Property -->
+    <ng-container *ngIf="property">
+      
+      <!-- Breadcrumbs -->
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/" class="text-decoration-none text-muted">Home</a></li>
+          <li class="breadcrumb-item"><a routerLink="/properties" class="text-decoration-none text-muted">Properties</a></li>
+          <li class="breadcrumb-item active fw-medium" aria-current="page">{{ property.title }}</li>
+        </ol>
+      </nav>
+
+      <div class="row g-4">
+        <!-- Main Content -->
+        <div class="col-lg-8">
+          
+          <!-- Header Bar -->
+          <div class="mb-4">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <app-badge [type]="property.transactionType">{{ property.transactionType }}</app-badge>
+              <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25"><i class="bi bi-shield-check me-1"></i>Verified</span>
+            </div>
+            <h1 class="fw-bold mb-2">{{ property.title }}</h1>
+            <p class="text-muted fs-5 mb-0"><i class="bi bi-geo-alt-fill text-danger me-2"></i>{{ property.location }}</p>
+          </div>
+
+          <!-- Media Bento Grid -->
+          <div class="mb-5">
+            <div class="row g-2 rounded-4 overflow-hidden shadow-sm" style="height: 450px;">
+              <div class="col-8 h-100 p-0 position-relative">
+                <img [src]="activeImage" class="w-100 h-100 object-fit-cover cursor-pointer" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'" [alt]="property.title">
+              </div>
+              <div class="col-4 h-100 p-0 d-flex flex-column gap-2 ps-2">
+                <ng-container *ngIf="property.imageGallery && property.imageGallery.length > 0; else fallbackThumbs">
+                  <div class="h-50 overflow-hidden" style="border-radius: 0 18px 0 0;">
+                    <img [src]="property.imageGallery[0]" class="w-100 h-100 object-fit-cover cursor-pointer" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" (click)="setActiveImage(property.imageGallery[0])">
+                  </div>
+                  <div class="h-50 overflow-hidden position-relative" style="border-radius: 0 0 18px 0;">
+                    <img [src]="property.imageGallery[1] || property.imageUrl" class="w-100 h-100 object-fit-cover cursor-pointer" style="transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" (click)="setActiveImage(property.imageGallery[1] || property.imageUrl)">
+                    <div *ngIf="property.imageGallery.length > 2" class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center cursor-pointer" style="background: rgba(9, 14, 23, 0.6); backdrop-filter: blur(2px);" (click)="setActiveImage(property.imageGallery[2])">
+                      <span class="text-white fw-bold fs-5">+{{ property.imageGallery.length - 2 }} Photos</span>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-template #fallbackThumbs>
+                  <div class="h-100 w-100 bg-secondary d-flex align-items-center justify-content-center" style="border-radius: 0 18px 18px 0;">
+                    <span class="text-muted small">No additional photos</span>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Specs Ribbon -->
+          <div class="bg-white rounded-4 shadow-sm p-4 mb-5 border">
+            <h5 class="fw-bold mb-4">Property Overview</h5>
+            <div class="row g-4">
+              <div class="col-6 col-md-3">
+                <div class="text-muted small mb-1"><i class="bi bi-moon me-2"></i>Bedrooms</div>
+                <div class="fw-bold fs-5">{{ property.bedrooms }}</div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="text-muted small mb-1"><i class="bi bi-droplet me-2"></i>Bathrooms</div>
+                <div class="fw-bold fs-5">{{ property.bathrooms }}</div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="text-muted small mb-1"><i class="bi bi-bounding-box-circles me-2"></i>Balconies</div>
+                <div class="fw-bold fs-5">{{ property.balconies || 1 }}</div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="text-muted small mb-1"><i class="bi bi-arrows-angle-expand me-2"></i>Carpet Area</div>
+                <div class="fw-bold fs-5">{{ property.area }} sq ft</div>
+              </div>
+              
+              <div class="col-6 col-md-3">
+                <div class="text-muted small mb-1"><i class="bi bi-lamp me-2"></i>Furnishing</div>
+                <div class="fw-bold fs-6">{{ property.furnishingStatus || 'Semi-Furnished' }}</div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="text-muted small mb-1"><i class="bi bi-layers me-2"></i>Floor Level</div>
+                <div class="fw-bold fs-6">{{ property.floorLevel || 'Middle' }}</div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="text-muted small mb-1"><i class="bi bi-compass me-2"></i>Facing</div>
+                <div class="fw-bold fs-6">{{ property.facingDirection || 'East' }}</div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="text-muted small mb-1"><i class="bi bi-star me-2"></i>Rating</div>
+                <div class="fw-bold fs-6">{{ property.rating }} / 5.0</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="mb-5">
+            <h4 class="fw-bold mb-3">About this property</h4>
+            <div class="text-muted lh-lg" [innerHTML]="property.description"></div>
+          </div>
+
+          <!-- Amenities Grid -->
+          <div class="mb-5">
+            <h4 class="fw-bold mb-4">Amenities</h4>
+            <div class="row g-3">
+              <div class="col-6 col-md-4" *ngFor="let amenity of property.amenities">
+                <div class="d-flex align-items-center p-3 bg-white rounded-3 border shadow-sm h-100">
+                  <i class="bi bi-check2-circle text-primary fs-5 me-3"></i>
+                  <span class="fw-medium">{{ amenity }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floor Plan Placeholder -->
+          <div class="mb-5">
+            <h4 class="fw-bold mb-4">Floor Plan & Locality</h4>
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="bg-white rounded-4 border p-4 text-center h-100 shadow-sm d-flex flex-column justify-content-center align-items-center" style="min-height: 250px;">
+                  <i class="bi bi-image text-muted" style="font-size: 3rem;"></i>
+                  <h6 class="fw-bold mt-3">Floor Plan Schematic</h6>
+                  <p class="text-muted small mb-0">Detailed dimensions and layout.</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="bg-white rounded-4 border p-4 text-center h-100 shadow-sm d-flex flex-column justify-content-center align-items-center" style="min-height: 250px;">
+                  <i class="bi bi-map text-muted" style="font-size: 3rem;"></i>
+                  <h6 class="fw-bold mt-3">Neighborhood Map</h6>
+                  <p class="text-muted small mb-0">Connectivity to metro & highways.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar / Price Card -->
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-lg sticky-top rounded-4" style="top: 100px;">
+            <div class="card-body p-4 p-xl-5">
+              <div class="text-muted text-uppercase small fw-bold mb-2">Asking Price</div>
+              <h2 class="fw-bold text-primary mb-1">{{ formatPrice(property.price) }}</h2>
+              <p class="text-muted small mb-4" *ngIf="property.transactionType === 'rent'">per month</p>
+
+              <hr class="my-4 text-muted">
+
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="fw-medium text-dark">Booking Token</span>
+                <span class="fw-bold fs-5">{{ formatPrice(getBookingTokenAmount()) }}</span>
+              </div>
+              
+              <div class="d-flex align-items-start mb-4 bg-light p-3 rounded-3">
+                <i class="bi bi-info-circle-fill text-primary mt-1 me-2"></i>
+                <p class="text-muted small mb-0">100% Refundable Booking Token • Transparent Fees. Pay securely online to reserve.</p>
+              </div>
+
+              <button class="btn btn-primary btn-lg w-100 rounded-pill fw-bold py-3 shadow-sm hover-lift" (click)="bookNow()">
+                {{ property.transactionType === 'buy' ? 'Book Now' : 'Reserve Property' }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Similar Properties -->
+      <div class="mt-5 pt-5 border-top" *ngIf="(similarProperties$ | async) as similar">
+        <h3 class="fw-bold mb-4">Similar Properties</h3>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4" *ngFor="let sim of similar">
+            <app-property-card [property]="sim"></app-property-card>
+          </div>
+        </div>
+      </div>
+
+    </ng-container>
+  </div>
+</div>

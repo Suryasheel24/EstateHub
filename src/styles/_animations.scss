@@ -1,0 +1,113 @@
+@import 'theme';
+
+/* ==========================================================================
+   Micro-Animations & Interactive Classes
+   ========================================================================== */
+
+/* 1. Card Elevation & Image Zoom (.eh-property-card) */
+.eh-property-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  overflow: hidden;
+  will-change: transform, box-shadow;
+  background-color: $bg-primary;
+  border: 1px solid $color-gray-200 !important;
+  border-radius: $radius-lg !important;
+
+  .card-img-wrapper {
+    overflow: hidden;
+    img {
+      transition: transform 0.35s ease;
+      will-change: transform;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-lg !important;
+
+    .card-img-wrapper img {
+      transform: scale(1.05);
+    }
+  }
+}
+
+/* 2. Segmented Switch Pill Styling (.eh-segmented-switch) */
+.eh-segmented-switch {
+  background-color: $bg-tertiary;
+  border-radius: $radius-pill;
+  padding: 0.25rem;
+  display: inline-flex;
+  gap: 0.25rem;
+
+  .btn {
+    border-radius: $radius-pill;
+    border: none;
+    font-weight: 600;
+    transition: background-color $transition-fast, color $transition-fast, box-shadow $transition-fast;
+    padding: 0.5rem 1.25rem;
+    color: $color-gray-600;
+
+    &.active, &:active, &:checked + label {
+      background-color: $bg-primary;
+      color: $color-brand-navy;
+      box-shadow: $shadow-sm;
+    }
+
+    &:hover:not(.active):not(:checked + label) {
+      color: $color-gray-900;
+      background-color: rgba($bg-primary, 0.5);
+    }
+  }
+
+  /* Angular reactive forms checkbox/radio integration */
+  .btn-check:checked + .btn {
+    background-color: $bg-primary;
+    color: $color-brand-navy;
+    box-shadow: $shadow-sm;
+  }
+}
+
+/* 3. Input Glow Focus Rings (.eh-input-field) */
+.eh-input-field {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  border-radius: $radius-md;
+  
+  &:focus, &:focus-within {
+    outline: none;
+    border-color: $color-accent-primary;
+    box-shadow: 0 0 0 3px rgba($color-accent-primary, 0.12);
+  }
+}
+
+/* 4. Skeleton Shimmer Keyframes (.eh-skeleton) */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.eh-skeleton {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(to right, $color-gray-200 4%, $color-gray-100 25%, $color-gray-200 36%);
+  background-size: 1000px 100%;
+  border-radius: $radius-sm;
+}
+
+/* 5. SVG Checkmark Success Stroke Keyframe (.eh-checkmark-path) */
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.eh-checkmark-path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: dash 0.8s ease-in-out forwards;
+}

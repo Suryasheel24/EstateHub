@@ -1,0 +1,62 @@
+<div class="search-controller-console p-3 p-md-4 rounded-4 shadow-lg" style="backdrop-filter: blur(16px); background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(255, 255, 255, 0.6);">
+  
+  <!-- Pill Segmented Switcher -->
+  <div class="d-flex justify-content-center justify-content-md-start mb-4">
+    <div class="eh-segmented-switch">
+      <input type="radio" class="btn-check" name="transactionType" id="buyTab" [checked]="activeTab === 'buy'" (change)="setTab('buy')">
+      <label class="btn" for="buyTab">Buy Properties</label>
+
+      <input type="radio" class="btn-check" name="transactionType" id="rentTab" [checked]="activeTab === 'rent'" (change)="setTab('rent')">
+      <label class="btn" for="rentTab">Rent Properties</label>
+    </div>
+  </div>
+
+  <form [formGroup]="searchForm" (ngSubmit)="onSearch()" class="row g-0 align-items-center bg-white rounded-3 p-2 shadow-sm border">
+    
+    <!-- Location -->
+    <div class="col-12 col-md-3 border-md-end px-2 py-2 py-md-0">
+      <label class="form-label text-muted small fw-semibold mb-0 ps-2">Location</label>
+      <select class="form-select form-select-lg fs-6 border-0 shadow-none bg-transparent" formControlName="location">
+        <option value="">Any Location</option>
+        <option *ngFor="let loc of locations" [value]="loc">{{ loc }}</option>
+      </select>
+    </div>
+
+    <!-- Property Type -->
+    <div class="col-12 col-md-3 border-md-end px-2 py-2 py-md-0 border-top border-md-top-0">
+      <label class="form-label text-muted small fw-semibold mb-0 ps-2">Property Type</label>
+      <select class="form-select form-select-lg fs-6 border-0 shadow-none bg-transparent" formControlName="propertyType">
+        <option value="">Any Type</option>
+        <option *ngFor="let pt of propertyTypes" [value]="pt.value">{{ pt.label }}</option>
+      </select>
+    </div>
+
+    <!-- Budget -->
+    <div class="col-12 col-md-2 border-md-end px-2 py-2 py-md-0 border-top border-md-top-0">
+      <label class="form-label text-muted small fw-semibold mb-0 ps-2">Budget</label>
+      <select class="form-select form-select-lg fs-6 border-0 shadow-none bg-transparent" formControlName="budget">
+        <option value="">Any Budget</option>
+        <option *ngFor="let bo of budgetOptions" [value]="bo.value">{{ bo.label }}</option>
+      </select>
+    </div>
+
+    <!-- Bedrooms -->
+    <div class="col-12 col-md-2 px-2 py-2 py-md-0 border-top border-md-top-0">
+      <label class="form-label text-muted small fw-semibold mb-0 ps-2">Bedrooms</label>
+      <select class="form-select form-select-lg fs-6 border-0 shadow-none bg-transparent" formControlName="bedrooms">
+        <option value="">Any</option>
+        <option value="1">1+ BHK</option>
+        <option value="2">2+ BHK</option>
+        <option value="3">3+ BHK</option>
+        <option value="4">4+ BHK</option>
+      </select>
+    </div>
+
+    <!-- Action -->
+    <div class="col-12 col-md-2 px-2 mt-3 mt-md-0">
+      <button type="submit" class="btn btn-accent btn-lg rounded-3 w-100 d-flex align-items-center justify-content-center fw-bold shadow-glow border-0 text-white" style="transition: transform 0.15s ease;">
+        <i class="bi bi-search me-2"></i> Search
+      </button>
+    </div>
+  </form>
+</div>

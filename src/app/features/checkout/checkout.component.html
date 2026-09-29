@@ -1,0 +1,154 @@
+<div class="bg-light min-vh-100 py-4 py-lg-5">
+  <div class="container">
+    
+    <div *ngIf="isLoading" class="text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <ng-container *ngIf="!isLoading && state?.currentProperty && state?.pricing">
+      
+      <!-- Stepper -->
+      <div class="row justify-content-center mb-4">
+        <div class="col-lg-8">
+          <app-booking-stepper [activeStep]="1"></app-booking-stepper>
+        </div>
+      </div>
+
+      <div class="row g-4 justify-content-center">
+        <!-- Form Area (Left) -->
+        <div class="col-lg-7 col-xl-6">
+          <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body p-4 p-md-5">
+              <h3 class="fw-bold mb-4">Customer Details</h3>
+              
+              <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+                <!-- Name & Email -->
+                <div class="row g-3 mb-3">
+                  <div class="col-md-6">
+                    <label class="form-label fw-medium text-muted small">Full Name <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" formControlName="fullName" placeholder="e.g. John Doe">
+                    <div class="text-danger small mt-1" *ngIf="checkoutForm.get('fullName')?.invalid && checkoutForm.get('fullName')?.touched">
+                      Please enter a valid full name (min 3 chars).
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label fw-medium text-muted small">Email Address <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" formControlName="email" placeholder="name@example.com">
+                    <div class="text-danger small mt-1" *ngIf="checkoutForm.get('email')?.invalid && checkoutForm.get('email')?.touched">
+                      Please enter a valid email.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Phone -->
+                <div class="mb-3">
+                  <label class="form-label fw-medium text-muted small">Mobile Number <span class="text-danger">*</span></label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-white">+91</span>
+                    <input type="tel" class="form-control" formControlName="phone" placeholder="9876543210">
+                  </div>
+                  <div class="text-danger small mt-1" *ngIf="checkoutForm.get('phone')?.invalid && checkoutForm.get('phone')?.touched">
+                    Please enter a valid 10-digit number.
+                  </div>
+                </div>
+
+                <!-- Address -->
+                <div class="mb-3">
+                  <label class="form-label fw-medium text-muted small">Street Address <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" formControlName="address" placeholder="House/Flat No., Building Name, Street">
+                  <div class="text-danger small mt-1" *ngIf="checkoutForm.get('address')?.invalid && checkoutForm.get('address')?.touched">
+                    Address is required.
+                  </div>
+                </div>
+
+                <!-- City, State, Pincode -->
+                <div class="row g-3 mb-4">
+                  <div class="col-md-5">
+                    <label class="form-label fw-medium text-muted small">City <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" formControlName="city" placeholder="e.g. Noida">
+                    <div class="text-danger small mt-1" *ngIf="checkoutForm.get('city')?.invalid && checkoutForm.get('city')?.touched">
+                      City is required.
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label fw-medium text-muted small">State <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" formControlName="state" placeholder="e.g. UP">
+                    <div class="text-danger small mt-1" *ngIf="checkoutForm.get('state')?.invalid && checkoutForm.get('state')?.touched">
+                      State is required.
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <label class="form-label fw-medium text-muted small">Pincode <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" formControlName="pincode" placeholder="201301" maxlength="6">
+                    <div class="text-danger small mt-1" *ngIf="checkoutForm.get('pincode')?.invalid && checkoutForm.get('pincode')?.touched">
+                      Invalid pincode.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-check mb-4">
+                  <input class="form-check-input" type="checkbox" formControlName="agreed" id="agreedCheck">
+                  <label class="form-check-label text-muted small" for="agreedCheck">
+                    I agree to EstateHub terms & verified booking policies. <span class="text-danger">*</span>
+                  </label>
+                  <div class="text-danger small mt-1" *ngIf="checkoutForm.get('agreed')?.invalid && checkoutForm.get('agreed')?.touched">
+                    You must agree to continue.
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill fw-bold">Continue to Review</button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Summary Card (Right) -->
+        <div class="col-lg-5 col-xl-4">
+          <div class="card border-0 shadow-lg sticky-top rounded-4" style="top: 100px;">
+            <!-- Property Snippet -->
+            <div class="card-body p-4 border-bottom">
+              <h5 class="fw-bold mb-3">Booking Summary</h5>
+              <div class="d-flex gap-3 align-items-center">
+                <img [src]="property.imageUrl" class="rounded-3 object-fit-cover shadow-sm" style="width: 80px; height: 80px;" alt="Property">
+                <div>
+                  <h6 class="fw-bold mb-1 text-truncate" style="max-width: 200px;">{{ property.title }}</h6>
+                  <p class="text-muted small mb-0"><i class="bi bi-geo-alt-fill me-1 text-danger"></i>{{ property.location }}</p>
+                  <span class="badge bg-light text-dark border mt-2 text-uppercase">{{ property.transactionType }}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pricing Breakdown -->
+            <div class="card-body p-4 bg-light">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">Booking Token</span>
+                <span class="fw-medium">{{ formatPrice(pricing.bookingToken) }}</span>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span class="text-muted">Platform Handling Fee</span>
+                <span class="fw-medium">{{ formatPrice(pricing.platformFee) }}</span>
+              </div>
+              <div class="d-flex justify-content-between mb-3">
+                <span class="text-muted">GST (18%)</span>
+                <span class="fw-medium">{{ formatPrice(pricing.gst) }}</span>
+              </div>
+              <hr>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="fw-bold fs-5 text-dark">Total Payable Now</span>
+                <span class="fw-bold fs-4 text-primary">{{ formatPrice(pricing.totalPayable) }}</span>
+              </div>
+              <div class="text-end mt-1">
+                <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 small"><i class="bi bi-shield-check me-1"></i>100% Refundable</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+</div>

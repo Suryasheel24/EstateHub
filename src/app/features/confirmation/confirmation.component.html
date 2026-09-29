@@ -1,0 +1,98 @@
+<div class="bg-light min-vh-100 py-4 py-lg-5">
+  <div class="container">
+    
+    <ng-container *ngIf="state?.confirmedBooking">
+      
+      <!-- Stepper -->
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8">
+          <app-booking-stepper [activeStep]="3"></app-booking-stepper>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7">
+          
+          <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+            
+            <!-- Success Hero -->
+            <div class="bg-success bg-opacity-10 text-center py-5 px-4 border-bottom border-success border-opacity-25">
+              <div class="d-inline-flex align-items-center justify-content-center bg-success text-white rounded-circle shadow-sm mb-4" style="width: 80px; height: 80px;">
+                <svg class="eh-checkmark-path" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" style="width: 50px; height: 50px; stroke: white; stroke-width: 4; fill: none; stroke-linecap: round; stroke-linejoin: round;">
+                  <path d="M14 27l7 7 17-17"/>
+                </svg>
+              </div>
+              <h2 class="fw-bold text-success mb-2">Booking Successfully Reserved!</h2>
+              <p class="text-success text-opacity-75 mb-0 fs-5">Your property has been secured and a confirmation email has been sent to <strong>{{ state.customerDetails?.email }}</strong>.</p>
+            </div>
+
+            <div class="card-body p-4 p-md-5">
+              
+              <!-- Reference Section -->
+              <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center bg-light p-4 rounded-3 border mb-5">
+                <div>
+                  <div class="text-muted small text-uppercase fw-bold mb-1">Booking Reference ID</div>
+                  <h4 class="fw-bold mb-0 text-primary">{{ booking.id }}</h4>
+                </div>
+                <div class="text-sm-end mt-3 mt-sm-0">
+                  <div class="text-muted small text-uppercase fw-bold mb-1">Reservation Date</div>
+                  <div class="fw-medium">{{ booking.reservationDate | date:'medium' }}</div>
+                </div>
+              </div>
+
+              <!-- Property & Customer Details -->
+              <div class="row g-5 mb-5">
+                <div class="col-md-6">
+                  <h6 class="fw-bold mb-3 text-muted border-bottom pb-2">Property Details</h6>
+                  <p class="fw-bold fs-5 mb-1">{{ property.title }}</p>
+                  <p class="text-muted mb-2"><i class="bi bi-geo-alt-fill me-1"></i>{{ property.location }}</p>
+                  <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 text-uppercase px-2 py-1">{{ property.transactionType }}</span>
+                </div>
+                <div class="col-md-6">
+                  <h6 class="fw-bold mb-3 text-muted border-bottom pb-2">Customer Details</h6>
+                  <p class="fw-medium mb-1">{{ customer.fullName }}</p>
+                  <p class="text-muted mb-1">{{ customer.phone }}</p>
+                  <p class="text-muted mb-0 lh-sm">{{ customer.address }}<br>{{ customer.city }}, {{ customer.state }} - {{ customer.pincode }}</p>
+                </div>
+              </div>
+
+              <!-- Payment Receipt -->
+              <h6 class="fw-bold mb-3 text-muted border-bottom pb-2">Payment Receipt</h6>
+              <div class="row g-3 align-items-center mb-5">
+                <div class="col-sm-8">
+                  <div class="d-flex justify-content-between mb-2 text-muted small">
+                    <span>Booking Token Amount</span>
+                    <span>{{ formatPrice(pricing.bookingToken) }}</span>
+                  </div>
+                  <div class="d-flex justify-content-between mb-2 text-muted small">
+                    <span>Platform & GST</span>
+                    <span>{{ formatPrice(pricing.platformFee + pricing.gst) }}</span>
+                  </div>
+                  <div class="d-flex justify-content-between fw-bold fs-5 mt-3 pt-3 border-top">
+                    <span>Total Paid</span>
+                    <span>{{ formatPrice(pricing.totalPayable) }}</span>
+                  </div>
+                </div>
+                <div class="col-sm-4 text-sm-end text-center mt-4 mt-sm-0">
+                  <span class="badge bg-success py-2 px-3 fs-6 rounded-pill shadow-sm"><i class="bi bi-check-circle-fill me-2"></i>Paid</span>
+                </div>
+              </div>
+
+              <!-- Actions -->
+              <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center pt-2">
+                <button class="btn btn-outline-primary btn-lg rounded-pill px-4 fw-medium" (click)="downloadReceipt()">
+                  <i class="bi bi-file-earmark-arrow-down-fill me-2"></i>Download Receipt
+                </button>
+                <button class="btn btn-primary btn-lg rounded-pill px-4 fw-bold shadow-sm" (click)="exploreMore()">
+                  Explore More Properties
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+</div>

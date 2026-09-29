@@ -1,0 +1,152 @@
+<div class="container-fluid py-4 bg-light min-vh-100">
+  <div class="row g-4">
+    <!-- Sidebar Filters -->
+    <div class="col-lg-3">
+      <div class="card border-0 shadow-sm sticky-top" style="top: 80px;">
+        <div class="card-header bg-white border-bottom py-3 d-flex justify-content-between align-items-center">
+          <h5 class="fw-bold mb-0"><i class="bi bi-funnel me-2"></i>Filters</h5>
+          <button class="btn btn-sm btn-link text-decoration-none text-muted" (click)="resetFilters()">Reset All</button>
+        </div>
+        <div class="card-body p-4" [formGroup]="filterForm">
+          
+          <!-- Transaction Type -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold small text-uppercase text-muted mb-2">Looking To</label>
+            <div class="btn-group w-100" role="group">
+              <input type="radio" class="btn-check" formControlName="transactionType" value="all" id="t-all">
+              <label class="btn btn-outline-primary" for="t-all">All</label>
+              
+              <input type="radio" class="btn-check" formControlName="transactionType" value="buy" id="t-buy">
+              <label class="btn btn-outline-primary" for="t-buy">Buy</label>
+
+              <input type="radio" class="btn-check" formControlName="transactionType" value="rent" id="t-rent">
+              <label class="btn btn-outline-primary" for="t-rent">Rent</label>
+            </div>
+          </div>
+
+          <!-- Location -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold small text-uppercase text-muted mb-2">Location</label>
+            <input type="text" class="form-control" formControlName="location" placeholder="e.g. Noida, Delhi">
+          </div>
+
+          <!-- Property Type -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold small text-uppercase text-muted mb-2">Property Type</label>
+            <select class="form-select" formControlName="propertyType">
+              <option *ngFor="let pt of propertyTypes" [value]="pt.value">{{ pt.label }}</option>
+            </select>
+          </div>
+
+          <!-- Price Range -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold small text-uppercase text-muted mb-2">Price Range (₹)</label>
+            <div class="row g-2">
+              <div class="col-6">
+                <input type="number" class="form-control" formControlName="minPrice" placeholder="Min">
+              </div>
+              <div class="col-6">
+                <input type="number" class="form-control" formControlName="maxPrice" placeholder="Max">
+              </div>
+            </div>
+          </div>
+
+          <!-- Bedrooms -->
+          <div class="mb-4">
+            <label class="form-label fw-semibold small text-uppercase text-muted mb-2">Bedrooms</label>
+            <div class="d-flex flex-wrap gap-2">
+              <input type="radio" class="btn-check" formControlName="bedrooms" [value]="null" id="b-any">
+              <label class="btn btn-sm btn-outline-secondary rounded-pill" for="b-any">Any</label>
+              
+              <input type="radio" class="btn-check" formControlName="bedrooms" [value]="1" id="b-1">
+              <label class="btn btn-sm btn-outline-secondary rounded-pill" for="b-1">1 BHK</label>
+              
+              <input type="radio" class="btn-check" formControlName="bedrooms" [value]="2" id="b-2">
+              <label class="btn btn-sm btn-outline-secondary rounded-pill" for="b-2">2 BHK</label>
+              
+              <input type="radio" class="btn-check" formControlName="bedrooms" [value]="3" id="b-3">
+              <label class="btn btn-sm btn-outline-secondary rounded-pill" for="b-3">3 BHK</label>
+
+              <input type="radio" class="btn-check" formControlName="bedrooms" [value]="4" id="b-4">
+              <label class="btn btn-sm btn-outline-secondary rounded-pill" for="b-4">4+ BHK</label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Area -->
+    <div class="col-lg-9">
+      
+      <!-- Results Header -->
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+        <div>
+          <h4 class="fw-bold mb-1">Properties</h4>
+          <p class="text-muted mb-0 small" *ngIf="!isLoading">Showing {{ properties.length }} verified properties</p>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <!-- Sort -->
+          <div class="d-flex align-items-center" [formGroup]="filterForm">
+            <span class="text-muted small me-2 text-nowrap">Sort by:</span>
+            <select class="form-select form-select-sm border-0 shadow-sm fw-medium" formControlName="sortBy">
+              <option *ngFor="let s of sortOptions" [value]="s.value">{{ s.label }}</option>
+            </select>
+          </div>
+          <!-- View Toggle -->
+          <div class="btn-group shadow-sm" role="group">
+            <input type="radio" class="btn-check" name="viewMode" id="v-grid" [checked]="viewMode === 'grid'" (click)="viewMode = 'grid'">
+            <label class="btn btn-sm btn-light" for="v-grid"><i class="bi bi-grid-fill"></i></label>
+            
+            <input type="radio" class="btn-check" name="viewMode" id="v-list" [checked]="viewMode === 'list'" (click)="viewMode = 'list'">
+            <label class="btn btn-sm btn-light" for="v-list"><i class="bi bi-list"></i></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Filter Tags -->
+      <div class="d-flex flex-wrap gap-2 mb-4" *ngIf="activeFilters.length > 0">
+        <span class="badge bg-white text-dark border shadow-sm rounded-pill px-3 py-2 d-flex align-items-center fw-medium" *ngFor="let filter of activeFilters">
+          <span class="me-2">{{ filter.label }}</span>
+          <i class="bi bi-x-circle-fill text-muted cursor-pointer" (click)="removeFilter(filter.key)" style="font-size: 1.1rem; line-height: 1;"></i>
+        </span>
+      </div>
+
+      <!-- Error State -->
+      <div class="alert alert-danger shadow-sm border-0 d-flex justify-content-between align-items-center rounded-3" *ngIf="hasError">
+        <div>
+          <i class="bi bi-exclamation-triangle-fill me-2"></i> Failed to load properties.
+        </div>
+        <button class="btn btn-sm btn-outline-danger rounded-pill px-3" (click)="retry()">Retry</button>
+      </div>
+
+      <!-- Loading State -->
+      <ng-container *ngIf="isLoading">
+        <div class="row g-4" [class.row-cols-1]="viewMode === 'list'" [class.row-cols-md-2]="viewMode === 'grid'" [class.row-cols-xl-3]="viewMode === 'grid'">
+          <div class="col" *ngFor="let _ of [1,2,3,4,5,6]">
+            <app-skeleton-loader type="card" [count]="1"></app-skeleton-loader>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Loaded State -->
+      <ng-container *ngIf="!isLoading && !hasError">
+        <div class="row g-4" *ngIf="properties.length > 0; else emptyState" [class.row-cols-1]="viewMode === 'list'" [class.row-cols-md-2]="viewMode === 'grid'" [class.row-cols-xl-3]="viewMode === 'grid'">
+          <div class="col" *ngFor="let prop of properties">
+            <!-- For List View styling, we can conditionally add classes, but sticking to standard card for now -->
+            <app-property-card [property]="prop" [ngClass]="{'list-view-card': viewMode === 'list'}"></app-property-card>
+          </div>
+        </div>
+        <ng-template #emptyState>
+          <app-empty-state 
+            title="No Properties Found" 
+            message="We couldn't find any properties matching your exact criteria."
+            actionText="Clear Filters"
+            (action)="resetFilters()">
+          </app-empty-state>
+        </ng-template>
+      </ng-container>
+
+    </div>
+  </div>
+</div>

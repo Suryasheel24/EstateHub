@@ -1,0 +1,354 @@
+<div class="home-page bg-primary">
+  <!-- Hero Section -->
+  <section class="hero-section position-relative d-flex align-items-center" style="min-height: 85vh; background: linear-gradient(135deg, rgba(15,23,42,0.6) 0%, rgba(202,138,4,0.3) 100%), url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat; padding-top: 100px;">
+    <div class="container position-relative z-1">
+      <div class="row text-center text-md-start mb-5">
+        <div class="col-lg-8">
+          <p class="text-accent fw-bold small tracking-wide mb-3" style="letter-spacing: 2px;">// DREAM &bull; EXPLORE &bull; DISCOVER</p>
+          <h1 class="display-3 fw-bolder text-white mb-4 lh-sm position-relative">
+            Find Your Signature<br><span class="text-accent">Sanctuary</span>
+            <span class="d-none d-lg-block position-absolute" style="font-family: 'Brush Script MT', cursive, sans-serif; font-size: 2.5rem; color: #f8fafc; right: -100px; top: 10px; transform: rotate(-5deg); opacity: 0.9;">Better Stays,<br>Brighter Journeys</span>
+          </h1>
+          <p class="lead text-white opacity-90 mb-0 fw-medium" style="max-width: 600px;">Discover handpicked properties, amazing deals and<br>unforgettable experiences, all in one place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Console (Overlapping Hero) -->
+  <section class="search-console-wrapper position-relative" style="margin-top: -80px; z-index: 10;">
+    <div class="container" style="max-width: 1200px; padding: 0 1.5rem;">
+      <div class="card border-0 bg-white p-4" style="border-radius: 20px; box-shadow: 0 10px 40px -10px rgba(15,23,42,0.15);">
+        
+        <!-- Tabs -->
+        <div class="d-flex gap-2 mb-4">
+          <button class="btn btn-light rounded-pill px-4 fw-bold d-flex align-items-center bg-white shadow-sm border text-brand-navy">
+            <i class="bi bi-building me-2"></i> Buy Properties
+          </button>
+          <button class="btn btn-link text-muted text-decoration-none rounded-pill px-4 fw-bold d-flex align-items-center hover-bg-light">
+            <i class="bi bi-key me-2"></i> Rent Properties
+          </button>
+        </div>
+
+        <!-- Form Row -->
+        <div class="row g-0 border rounded-4 overflow-hidden" style="border-color: #E2E8F0 !important;">
+          <!-- Destination -->
+          <div class="col-md-4 p-3 border-end position-relative hover-bg-light cursor-pointer">
+            <div class="d-flex align-items-center h-100">
+              <div class="icon-circle bg-light rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                <i class="bi bi-geo-alt text-muted fs-5"></i>
+              </div>
+              <div>
+                <label class="fw-bold text-brand-navy mb-0 d-block" style="font-size: 0.85rem;">Destination</label>
+                <input type="text" class="border-0 bg-transparent p-0 w-100 text-muted shadow-none" placeholder="Where are you going?" style="font-size: 0.9rem; outline: none;">
+              </div>
+            </div>
+          </div>
+          <!-- Dates -->
+          <div class="col-md-3 p-3 border-end position-relative hover-bg-light cursor-pointer">
+            <div class="d-flex align-items-center h-100">
+              <div class="icon-circle bg-light rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                <i class="bi bi-calendar3 text-muted fs-5"></i>
+              </div>
+              <div>
+                <label class="fw-bold text-brand-navy mb-0 d-block" style="font-size: 0.85rem;">Check-in - Check-out</label>
+                <input type="text" class="border-0 bg-transparent p-0 w-100 text-muted shadow-none" placeholder="Select dates" style="font-size: 0.9rem; outline: none;">
+              </div>
+            </div>
+          </div>
+          <!-- Guests -->
+          <div class="col-md-3 p-3 position-relative hover-bg-light cursor-pointer">
+            <div class="d-flex align-items-center h-100">
+              <div class="icon-circle bg-light rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                <i class="bi bi-person text-muted fs-5"></i>
+              </div>
+              <div class="w-100 d-flex justify-content-between align-items-center">
+                <div>
+                  <label class="fw-bold text-brand-navy mb-0 d-block" style="font-size: 0.85rem;">BHK & Budget</label>
+                  <input type="text" class="border-0 bg-transparent p-0 w-100 text-muted shadow-none" placeholder="2 BHK, Any" style="font-size: 0.9rem; outline: none;">
+                </div>
+                <i class="bi bi-chevron-down text-muted small"></i>
+              </div>
+            </div>
+          </div>
+          <!-- CTA -->
+          <div class="col-md-2 p-2">
+            <button class="btn btn-accent w-100 h-100 rounded-4 fw-bold fs-6 border-0 shadow-none d-flex justify-content-center align-items-center" routerLink="/properties" [queryParams]="{transactionType: 'buy'}">
+              <i class="bi bi-search me-2"></i> Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Locations -->
+  <section class="bg-primary" style="padding: 6rem 0 4rem 0;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-5">
+        <div>
+          <p class="text-muted fw-bold small tracking-wide mb-2" style="letter-spacing: 2px;">// POPULAR DESTINATIONS</p>
+          <h2 class="fw-bolder mb-2 text-brand-navy display-6">Explore Top Locations</h2>
+          <p class="text-muted fw-medium mb-0">Discover amazing places, handpicked for your next adventure.</p>
+        </div>
+        <button class="btn btn-outline-secondary rounded-pill px-4 fw-bold text-brand-navy border mt-3 mt-md-0 shadow-sm bg-white d-flex align-items-center">
+          View All Locations <i class="bi bi-arrow-right ms-2"></i>
+        </button>
+      </div>
+      
+      <!-- 4-Column Responsive Grid -->
+      <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-lg-4">
+        <div class="col" *ngFor="let loc of popularLocations | slice:0:4; let i = index">
+          <a [routerLink]="['/properties']" [queryParams]="{ location: loc.query }" class="text-decoration-none d-block h-100">
+            <div class="card h-100 border-0 text-white rounded-4 overflow-hidden position-relative eh-property-card" style="aspect-ratio: 4/5; box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);">
+              <div class="card-img-wrapper h-100 w-100">
+                <img [src]="loc.image" class="w-100 h-100 object-fit-cover" [alt]="loc.name">
+              </div>
+              <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to top, rgba(9,14,23,0.85) 0%, rgba(9,14,23,0) 50%);"></div>
+              
+              <!-- Top Badge -->
+              <div class="position-absolute top-0 start-0 p-3">
+                <span class="badge bg-white text-brand-navy rounded-pill px-3 py-2 shadow-sm fw-bold border" style="font-size: 0.75rem;">
+                  <ng-container *ngIf="i===0">Top Rated</ng-container>
+                  <ng-container *ngIf="i===1">Trending</ng-container>
+                  <ng-container *ngIf="i===2">Best Deal</ng-container>
+                  <ng-container *ngIf="i===3">Popular</ng-container>
+                </span>
+              </div>
+
+              <!-- Bottom Content -->
+              <div class="position-absolute bottom-0 start-0 p-4 w-100 d-flex justify-content-between align-items-end">
+                <div>
+                  <h4 class="fw-bolder mb-1 fs-3">{{ loc.name }}</h4>
+                  <p class="small text-white opacity-75 fw-medium mb-0">
+                    <ng-container *ngIf="i===0">Tech Hub</ng-container>
+                    <ng-container *ngIf="i===1">Cyber City</ng-container>
+                    <ng-container *ngIf="i===2">Financial Capital</ng-container>
+                    <ng-container *ngIf="i===3">Capital Region</ng-container>
+                  </p>
+                </div>
+                <div class="bg-white text-brand-navy rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 32px; height: 32px;">
+                  <i class="bi bi-arrow-right small fw-bold"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Properties -->
+  <section class="bg-secondary" style="padding: 5rem 0;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end mb-5">
+        <div>
+          <p class="text-muted fw-bold small tracking-wide mb-2" style="letter-spacing: 2px;">// FEATURED LISTINGS</p>
+          <h2 class="fw-bolder mb-2 text-brand-navy display-6">Exclusive Listings</h2>
+          <p class="text-muted fw-medium mb-0">Handpicked properties and stays for your dream journey.</p>
+        </div>
+        <button class="btn btn-outline-secondary rounded-pill px-4 fw-bold text-brand-navy border mt-3 mt-md-0 shadow-sm bg-white d-flex align-items-center">
+          View All Listings <i class="bi bi-arrow-right ms-2"></i>
+        </button>
+      </div>
+
+      <ng-container *ngIf="featuredProperties$ | async as properties; else loading">
+        <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3" *ngIf="properties.length > 0; else noData">
+          <div class="col d-flex align-items-stretch" *ngFor="let prop of properties">
+            <!-- Custom Reference Card Design -->
+            <div class="card h-100 border-0 bg-white rounded-4 w-100 overflow-hidden eh-property-card d-flex flex-column" style="box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06); border: 1px solid #E2E8F0 !important;">
+              <!-- Image Container -->
+              <div class="position-relative w-100 card-img-wrapper" style="aspect-ratio: 16/10;">
+                <img [src]="prop.imageUrl" class="w-100 h-100 object-fit-cover" [alt]="prop.title">
+                <!-- Top Badges -->
+                <div class="position-absolute top-0 start-0 w-100 p-3 d-flex justify-content-between">
+                  <span class="badge bg-brand-navy text-white rounded-pill px-3 py-2 shadow-sm fw-medium d-flex align-items-center" style="font-size: 0.75rem;">
+                    <i class="bi bi-star-fill text-accent me-1 small"></i> Best Seller
+                  </span>
+                  <button class="btn btn-light rounded-circle d-flex align-items-center justify-content-center shadow-sm p-0" style="width: 32px; height: 32px; border: none;">
+                    <i class="bi bi-heart text-muted"></i>
+                  </button>
+                </div>
+              </div>
+              
+              <!-- Content -->
+              <div class="p-4 d-flex flex-column flex-grow-1">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <h5 class="fw-bold text-brand-navy mb-0 text-truncate pe-2" style="max-width: 75%;">{{ prop.title }}</h5>
+                </div>
+                
+                <div class="d-flex align-items-center text-muted small fw-medium mb-3">
+                  <i class="bi bi-geo-alt-fill text-accent me-1"></i> {{ prop.location }}
+                  <span class="mx-2">&bull;</span>
+                  <span class="text-brand-navy fw-bold"><i class="bi bi-star-fill text-accent me-1"></i> {{ prop.rating }}</span>
+                  <span class="ms-1 opacity-75">(120 reviews)</span>
+                </div>
+                
+                <!-- Spec Chips -->
+                <div class="d-flex gap-3 mb-4 mt-2">
+                  <div class="d-flex align-items-center text-muted small fw-medium">
+                    <i class="bi bi-wifi me-2 fs-6"></i> Free WiFi
+                  </div>
+                  <div class="d-flex align-items-center text-muted small fw-medium">
+                    <i class="bi bi-water me-2 fs-6"></i> Pool
+                  </div>
+                  <div class="d-flex align-items-center text-muted small fw-medium">
+                    <i class="bi bi-cup-hot me-2 fs-6"></i> Breakfast
+                  </div>
+                </div>
+
+                <!-- Footer (Push to bottom) -->
+                <div class="mt-auto d-flex justify-content-between align-items-center border-top pt-3" style="border-color: #E2E8F0 !important;">
+                  <div>
+                    <span class="fw-bolder fs-5 text-brand-navy">&#8377;{{ (prop.price | number:'1.0-0') || '0' }}</span>
+                    <span class="text-muted small fw-medium ms-1">/ night</span>
+                  </div>
+                  <a [routerLink]="['/property', prop.id]" class="btn btn-brand-navy text-white rounded-pill px-4 fw-medium shadow-none py-2" style="background-color: #0F172A;">View Details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-template #noData>
+          <app-empty-state title="No Featured Properties" message="Check back later for exclusive listings."></app-empty-state>
+        </ng-template>
+      </ng-container>
+      
+      <ng-template #loading>
+        <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3">
+          <div class="col" *ngFor="let _ of [1,2,3]">
+            <app-skeleton-loader type="card" [count]="1"></app-skeleton-loader>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </section>
+
+  <!-- How It Works & Why Us -->
+  <section class="bg-mint-sage" style="padding: 5rem 0;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
+      
+      <!-- Top Sub-section ("The Process") -->
+      <div class="mb-5 pb-4">
+        <p class="text-success fw-bold small tracking-wide mb-2" style="letter-spacing: 2px;">// WHY CHOOSE US</p>
+        <h2 class="fw-bolder mb-2 text-brand-navy display-6">The EstateHub Process</h2>
+        <p class="text-muted fw-medium mb-5">Simple steps, seamless experience — from search to your next adventure.</p>
+        
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card h-100 border-0 bg-white rounded-4 p-4 hover-lift" style="box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);">
+              <div class="rounded-circle d-flex align-items-center justify-content-center mb-4" style="width: 50px; height: 50px; background-color: rgba(16, 185, 129, 0.1);">
+                <i class="bi bi-search text-success fs-4"></i>
+              </div>
+              <h5 class="fw-bold mb-3 text-brand-navy">Easy Search & Filter</h5>
+              <p class="text-muted small lh-lg mb-0">Find the perfect stay with smart filters and real-time availability across thousands of verified listings.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 border-0 bg-white rounded-4 p-4 hover-lift" style="box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);">
+              <div class="rounded-circle d-flex align-items-center justify-content-center mb-4" style="width: 50px; height: 50px; background-color: rgba(16, 185, 129, 0.1);">
+                <i class="bi bi-shield-check text-success fs-4"></i>
+              </div>
+              <h5 class="fw-bold mb-3 text-brand-navy">Secure Booking</h5>
+              <p class="text-muted small lh-lg mb-0">Your data and payments are protected with top-notch security and 100% escrow protection guarantees.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 border-0 bg-white rounded-4 p-4 hover-lift" style="box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);">
+              <div class="rounded-circle d-flex align-items-center justify-content-center mb-4" style="width: 50px; height: 50px; background-color: rgba(16, 185, 129, 0.1);">
+                <i class="bi bi-headset text-success fs-4"></i>
+              </div>
+              <h5 class="fw-bold mb-3 text-brand-navy">24/7 Customer Support</h5>
+              <p class="text-muted small lh-lg mb-0">We're here for you, anytime, anywhere. Our concierge team ensures a seamless experience.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Sub-section ("Why Use EstateHub?") -->
+      <div class="row g-5 align-items-center pt-4">
+        <div class="col-lg-4">
+          <h2 class="fw-bolder mb-3 text-brand-navy">Why Use EstateHub?</h2>
+          <p class="text-muted fw-medium lh-lg mb-4">More than just a booking platform — we're your reliable real estate and travel partner, always.</p>
+          
+          <div class="bg-white p-4 rounded-4 border mt-4" style="box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);">
+            <div class="d-flex align-items-start">
+              <div class="rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0" style="width: 48px; height: 48px; background-color: rgba(202, 138, 4, 0.1);">
+                <i class="bi bi-percent text-accent fs-5"></i>
+              </div>
+              <div>
+                <h6 class="fw-bold text-brand-navy mb-1">Exclusive Deals</h6>
+                <p class="small text-muted mb-0">Get the best prices and special offers only on EstateHub.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="row g-4 row-cols-1 row-cols-sm-2">
+            <div class="col">
+              <div class="bg-white rounded-4 p-4 h-100 border d-flex align-items-start" style="box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);">
+                <div class="rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0" style="width: 48px; height: 48px; background-color: rgba(202, 138, 4, 0.1);">
+                  <i class="bi bi-handshake text-accent fs-5"></i>
+                </div>
+                <div>
+                  <h6 class="fw-bold text-brand-navy mb-1">Trusted Partners</h6>
+                  <p class="small text-muted mb-0">Global network of top properties and builders.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="bg-white rounded-4 p-4 h-100 border d-flex align-items-start" style="box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);">
+                <div class="rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0" style="width: 48px; height: 48px; background-color: rgba(202, 138, 4, 0.1);">
+                  <i class="bi bi-lock text-accent fs-5"></i>
+                </div>
+                <div>
+                  <h6 class="fw-bold text-brand-navy mb-1">Secure Payments</h6>
+                  <p class="small text-muted mb-0">Multiple secure payment options.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="bg-white rounded-4 p-4 h-100 border d-flex align-items-start" style="box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);">
+                <div class="rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0" style="width: 48px; height: 48px; background-color: rgba(202, 138, 4, 0.1);">
+                  <i class="bi bi-calendar-x text-accent fs-5"></i>
+                </div>
+                <div>
+                  <h6 class="fw-bold text-brand-navy mb-1">Easy Cancellations</h6>
+                  <p class="small text-muted mb-0">Hassle-free cancellation policy.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="bg-white rounded-4 p-4 h-100 border d-flex align-items-start" style="box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);">
+                <div class="rounded-circle d-flex align-items-center justify-content-center me-3 flex-shrink-0" style="width: 48px; height: 48px; background-color: rgba(202, 138, 4, 0.1);">
+                  <i class="bi bi-star text-accent fs-5"></i>
+                </div>
+                <div>
+                  <h6 class="fw-bold text-brand-navy mb-1">Customer Reviews</h6>
+                  <p class="small text-muted mb-0">Real reviews from real travelers.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="text-white text-center" style="padding: 6rem 0; background: linear-gradient(rgba(15,23,42,0.85), rgba(9,14,23,0.95)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2000') center/cover no-repeat;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <h2 class="display-5 fw-bolder text-white mb-4">Ready to secure your <span class="text-accent">next home?</span></h2>
+          <p class="lead text-white opacity-90 mb-5 fw-medium">Join thousands of happy travelers and find your perfect stay today.</p>
+          <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+            <a routerLink="/properties" class="btn btn-accent btn-lg rounded-pill px-5 fw-bold shadow-none border-0 text-white">Explore Hotels & Flights &rarr;</a>
+            <a href="javascript:void(0)" class="btn btn-outline-light btn-lg rounded-pill px-5 fw-bold" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(4px);">Create Account For Best Deals</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

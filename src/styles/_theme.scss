@@ -1,0 +1,53 @@
+// Typography
+$font-family-display: 'Plus Jakarta Sans', sans-serif;
+$font-family-body: 'Inter', sans-serif;
+$font-family-mono: monospace;
+
+// Brand Colors (Refined Neutral & Calming)
+$color-brand-navy: #0F172A;       // Deep charcoal slate
+$color-brand-navy-light: #1E293B; // Slate 800
+$color-accent-amber: #CA8A04;     // Warm amber/sand
+$color-accent-amber-hover: #A16207;
+$color-accent-primary: #CA8A04;   // Set amber as primary accent for CTAs
+$color-accent-primary-hover: #A16207;
+$color-success: #10B981; // Green for success states/icons
+$color-danger: #E63946;
+
+// Neutral Colors
+$color-gray-50: #F8FAFC;
+$color-gray-100: #F1F5F9;
+$color-gray-200: #E2E8F0;
+$color-gray-300: #CBD5E1;
+$color-gray-400: #94A3B8;
+$color-gray-500: #64748B;
+$color-gray-600: #475569;
+$color-gray-700: #334155;
+$color-gray-800: #1E293B;
+$color-gray-900: #0F172A;
+
+// Surface & Backgrounds
+$bg-primary: #FFFFFF;
+$bg-secondary: #F8FAFC; // Soft slate-white canvas
+$bg-tertiary: #F1F5F9;  // Subtitle/Warm neutral (added back for compatibility)
+$bg-mint-sage: #F0FDF4;  // Soft pale mint/sage gradient tint
+$bg-mint-sage-dark: #ECFDF5;
+
+// Border Radius
+$radius-sm: 0.25rem;
+$radius-md: 0.5rem;
+$radius-lg: 16px; // rounded-2xl (16px) corners
+$radius-xl: 1.5rem;
+$radius-pill: 50rem;
+
+// Elevation Shadows
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 4px 20px -2px rgba(15, 23, 42, 0.06); // Soft luxury shadow
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+$shadow-glow: 0 0 20px rgba($color-accent-amber, 0.5);
+
+// Transitions
+$transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-bounce: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
